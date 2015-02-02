@@ -1,0 +1,28 @@
+{
+  "name": "tagasauris-client",
+  "version": "0.0.1",
+  "description": "Tagasauris Node Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tagasauris/tagasauris-node-client.git"
+  },
+  "dependencies": {
+    "request": "2.53.0",
+    "tough-cookie": "0.12.1"  
+  },
+  "keywords": [
+    "node",
+    "tagasauris",
+    "client"
+  ],
+  "author": "Tagasauris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tagasauris/tagasauris-node-client/issues"
+  },
+  "homepage": "https://github.com/tagasauris/tagasauris-node-client"
+}
