@@ -83,7 +83,7 @@ Client.prototype.workflowDefinition = function(funcProxy) {
   var self = this,
       request_params = {
         uri: "https://stable.tagasauris.com/api/2/workflowdefinition/",
-        method: "Get",
+        method: "GET",
         jar: self.cookie_jar
       };
   self._execute_query(request_params, funcProxy);
@@ -95,7 +95,7 @@ Client.prototype.listJobs = function(funcProxy) {
   var self = this,
       request_params = {
         uri: "https://stable.tagasauris.com/api/2/job/",
-        method: "Get",
+        method: "GET",
         jar: self.cookie_jar,
       };
   self._execute_query(request_params, funcProxy);
@@ -107,8 +107,34 @@ Client.prototype.getJob = function(job_id, funcProxy) {
   var self = this;
       request_params = {
         uri: "https://stable.tagasauris.com/api/2/job/" + job_id,
-        method: "Get",
+        method: "GET",
         jar: self.cookie_jar,
+      };
+  self._execute_query(request_params, funcProxy);
+};
+
+
+// Create Job - or 400 (bad request)
+Client.prototype.createJob = function(job_data_json, funcProxy) {
+  var self = this;
+      request_params = {
+        uri: "https://stable.tagasauris.com/api/2/job/create/",
+        method: "POST",
+        jar: self.cookie_jar,
+        json: job_data_json
+      };
+  self._execute_query(request_params, funcProxy);
+}
+
+
+// Get Job Results - or return 400 (bad request)
+Client.prototype.getResults = function(results_filter, funcProxy) {
+  var self = this;
+      request_params = {
+        uri: "https://stable.tagasauris.com/api/3/transformresult",
+        method: "GET",
+        qs: results_filter,
+        jar: self.cookie_jar
       };
   self._execute_query(request_params, funcProxy);
 };
