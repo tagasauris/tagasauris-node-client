@@ -45,6 +45,11 @@ Client.prototype._execute_query = function(request_params, funcProxy) {
   var _func = function(callback) {
     request(request_params, 
             function(error, response, body) {
+              try {
+                body = JSON.parse(body);
+              } catch (e) {
+                // pass - we'll just send the body as it is
+              }
               funcProxy(error, response, body);
               callback(error, body);
     });
@@ -104,7 +109,7 @@ Client.prototype.listJobs = function(funcProxy) {
 
 // Get Job Details for the specified job - or 400 (not found) or 401 (unauthorized)
 Client.prototype.getJob = function(job_id, funcProxy) {
-  var self = this;
+  var self = this,
       request_params = {
         uri: "https://stable.tagasauris.com/api/2/job/" + job_id,
         method: "GET",
@@ -116,7 +121,7 @@ Client.prototype.getJob = function(job_id, funcProxy) {
 
 // Create Job - or 400 (bad request)
 Client.prototype.createJob = function(job_data_json, funcProxy) {
-  var self = this;
+  var self = this,
       request_params = {
         uri: "https://stable.tagasauris.com/api/2/job/create/",
         method: "POST",
@@ -129,7 +134,7 @@ Client.prototype.createJob = function(job_data_json, funcProxy) {
 
 // Get Job Results - or return 400 (bad request)
 Client.prototype.getResults = function(results_filter, funcProxy) {
-  var self = this;
+  var self = this,
       request_params = {
         uri: "https://stable.tagasauris.com/api/3/transformresult",
         method: "GET",
