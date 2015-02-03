@@ -27,6 +27,7 @@ var Client = function(config) {
 // Authorize the User - takes a function to pass the results to (so other functions can be run in series)
 Client.prototype.authorize = function(funcProxy) {
   var self = this;
+
   request({
       uri: "https://stable.tagasauris.com/api/2/login/",
       method: "POST",
@@ -40,7 +41,7 @@ Client.prototype.authorize = function(funcProxy) {
   });
 };
 
-
+// Retrieve workflow definitions available to the authorized user
 Client.prototype.workflowDefinition = function(funcProxy) {
   var self = this;
   
