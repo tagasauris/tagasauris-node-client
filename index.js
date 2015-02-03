@@ -26,7 +26,6 @@ var Client = function(config) {
 
 // Authorize the User - takes a function to pass the results to (so other functions can be run in series)
 Client.prototype.authorize = function(funcProxy) {
-  console.log('starting');
   var self = this;
   request({
       uri: "https://stable.tagasauris.com/api/2/login/",
