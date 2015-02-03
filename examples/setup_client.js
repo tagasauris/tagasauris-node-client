@@ -7,4 +7,4 @@ var printMe = function(error, response, body) {
   console.log(body);
 }
 
-client.authorize(printMe);
+client.getJob('607f15c18fd592e67989912ec8c04fcb', printMe);
