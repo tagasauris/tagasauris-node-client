@@ -14,13 +14,23 @@ var request = require('request'),
 
 // We'll need request to keep cookies in a jar
 request.defaults({jar: true});
+
+var API_BASE_URL = 'https://stable.tagasauris.com'
   
+
+
 var Client = function(config) {
   this.config = config;
   this.API_KEY = config.api_key;
   this.LOGIN = config.login;
   this.cookie_jar = request.jar(),
   this.is_authorized = false;
+  
+  if (config.hasOwnProperty('api_base_url')) {
+      this.api_base_url = config.api_base_url;
+  } else {
+      this.api_base_url = API_BASE_URL;
+  }
   
 };
 
@@ -67,7 +77,7 @@ Client.prototype.authorize = function(funcProxy) {
   var self = this;
 
   request({
-      uri: "https://stable.tagasauris.com/api/2/login/",
+      uri: self.api_base_url + "/api/2/login/",
       method: "POST",
       jar: self.cookie_jar,
       form: {
@@ -87,7 +97,7 @@ Client.prototype.authorize = function(funcProxy) {
 Client.prototype.workflowDefinition = function(funcProxy) {
   var self = this,
       request_params = {
-        uri: "https://stable.tagasauris.com/api/2/workflowdefinition/",
+        uri: self.api_base_url + "/api/2/workflowdefinition/",
         method: "GET",
         jar: self.cookie_jar
       };
@@ -99,7 +109,7 @@ Client.prototype.workflowDefinition = function(funcProxy) {
 Client.prototype.listJobs = function(funcProxy) {
   var self = this,
       request_params = {
-        uri: "https://stable.tagasauris.com/api/2/job/",
+        uri: self.api_base_url + "/api/2/job/",
         method: "GET",
         jar: self.cookie_jar,
       };
@@ -111,7 +121,7 @@ Client.prototype.listJobs = function(funcProxy) {
 Client.prototype.getJob = function(job_id, funcProxy) {
   var self = this,
       request_params = {
-        uri: "https://stable.tagasauris.com/api/2/job/" + job_id,
+        uri: self.api_base_url + "/api/2/job/" + job_id,
         method: "GET",
         jar: self.cookie_jar,
       };
@@ -123,7 +133,7 @@ Client.prototype.getJob = function(job_id, funcProxy) {
 Client.prototype.createJob = function(job_data_json, funcProxy) {
   var self = this,
       request_params = {
-        uri: "https://stable.tagasauris.com/api/2/job/create/",
+        uri: self.api_base_url + "/api/2/job/create/",
         method: "POST",
         jar: self.cookie_jar,
         json: job_data_json
@@ -136,7 +146,7 @@ Client.prototype.createJob = function(job_data_json, funcProxy) {
 Client.prototype.getResults = function(results_filter, funcProxy) {
   var self = this,
       request_params = {
-        uri: "https://stable.tagasauris.com/api/3/transformresult",
+        uri: self.api_base_url + "/api/3/transformresult",
         method: "GET",
         qs: results_filter,
         jar: self.cookie_jar
