@@ -75,7 +75,6 @@ Client.prototype._execute_query = function(request_params, funcProxy) {
 // Authorize the User - takes a function to pass the results to (so other functions can be run in series)
 Client.prototype.authorize = function(funcProxy) {
   var self = this;
-
   request({
       uri: self.api_base_url + "/api/2/login/",
       method: "POST",
