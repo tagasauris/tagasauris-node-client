@@ -327,6 +327,8 @@ Sample Response:
 }
 ```
 
+### Contributions
+Contributions are always welcome, just fork this repo and submit a pull request with your code.  Make sure to run the automated tests, and to include new tests for any additional functionality exposed.
 
 
 ### Testing
