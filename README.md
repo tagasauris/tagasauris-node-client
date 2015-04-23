@@ -124,8 +124,10 @@ Sample Response:
 
 #### List Jobs
 List jobs currently running.
+
 ##### Required Parameters
 * None
+
 ##### Optional Parameters
 * ```per_page``` - defaults to unlimited, used to limit entries displayed
 
