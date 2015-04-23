@@ -218,7 +218,7 @@ This method accepts a properly formatted JSON object that contains the specifica
     task: {
         workflow: "workflow_id", // string, required
         title: "title of workflow", // string, optional
-        instruction: "Tagger Instructions" // string, required
+        instruction: "Tagger Instructions" // string, optional
     },
     mediaobjects: [ // array of objects to include in job
         id: "media_id", // string, required
