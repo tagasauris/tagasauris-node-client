@@ -35,7 +35,7 @@ function(error, response, body) {
 <p>Login is automatically handled by the client, so all endpoints that need authentication are already taken care of.  That said, if you find the need to login manually, there is an endpoint to do that.<p>
 <code>
 client.authorize(callback_function);
-<code>
+</code>
 <p>The authorize endpoint accepts no parameters, and simply authorizes the account, storing the appropriate tokens.  The client handles calling this as needed for the rest of the endpoints, so there will rarely be a need to call this yourself.</p>
 
 
