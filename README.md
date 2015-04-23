@@ -124,8 +124,10 @@ Sample Response:
 
 #### List Jobs
 List jobs currently running.
-##### Paramters
+##### Required Parameters
 * None
+##### Optional Parameters
+* ```per_page``` - defaults to unlimited, used to limit entries displayed
 
 ```javascript
 client.listJobs(
@@ -134,6 +136,33 @@ client.listJobs(
     }    
 );
 ```
+
+Sample Response:
+```
+[
+    {
+        "description": "My first tagging job",
+        "billing": {
+            "price": 29,
+            "total": 290
+        },
+        "title": "First tagging",
+        "created": "2012-09-20T10:26:12",
+        "state": "started",
+        "progress": {
+            "mediaobject_all": 10,
+            "mediaobject_done": 1
+        },
+        "type": {
+            "id": "tagging",
+            "name": "Standard Tagging"
+        },
+        "id": "7fab2ee7da2d590c0a53491d8f982509"
+    }
+]
+```
+
+
 
 
 
