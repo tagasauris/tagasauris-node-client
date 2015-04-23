@@ -33,9 +33,26 @@ function(error, response, body) {
 
 #### Login
 Login is automatically handled by the client, so all endpoints that need authentication are already taken care of.  That said, if you find the need to login manually, there is an endpoint to do that.
+##### Parameters
+* None
 
 ```javascript
 client.authorize(callback_function);
+```
+
+Success Response:
+```
+{"login": "done"}
+```
+
+Error Response - login or key missing:
+```
+'Missing parameter'
+```
+
+Error Response - bad credentials:
+```
+'Invalid login or password'
 ```
 
 The authorize endpoint accepts no parameters, and simply authorizes the account, storing the appropriate tokens.  The client handles calling this as needed for the rest of the endpoints, so there will rarely be a need to call this yourself.
@@ -51,6 +68,58 @@ client.workflowDefinition(
         //do something with result
     }    
 );
+```
+
+Sample Response:
+```
+[
+    {
+        "name": "Moderation",
+        "options": [
+            {
+                "help_2": "Click here if there is no inappropriate content in this photo",
+                "help_1": "Click here if there is inappropriate content in this photo",
+                "option": "Determine if there is any inappropriate content",
+                "question": "Is there any inappropriate content in these photos (e.g. nudity and illicit drugs)?",
+                "answer_2": "No",
+                "answer_1": "Yes"
+            },
+            {
+                "help_2": "Click here if no faces are visible in this photo",
+                "help_1": "Click here if any faces are visible in this photo",
+                "option": "Determine if there are visible faces",
+                "question": "Are there any visible faces in these photos?",
+                "answer_2": "No Faces",
+                "answer_1": "Faces"
+            }
+        ],
+        "prices": [
+            {
+                "description": "5¢ per image",
+                "value": 5
+            }
+        ],
+        "id": "mediagrid",
+        "description": {
+            "short": "Select this task type to either screen images for pre-determined content, such as any undesirable, or harmful content or categorize images into one of two categories that you specify, such as exterior or interior, faces or no faces, day or night.",
+            "long": "Long media grid description"
+        }
+    },
+    {
+        "name": "Standard Tagging",
+        "prices": [
+            {
+                "description": "29¢ per image",
+                "value": 29
+            }
+        ],
+        "id": "tagging",
+        "description": {
+            "short": "Select this task type to get tags that include main subject and actions, photo orientations, photographic style, dominate colors, geographical location, emotion, time of day, interior/exterior, people/no people, number, age and gender of people plus many more.",
+            "long": "Long tagging description"
+        }
+    }
+]
 ```
 
 #### List Jobs
