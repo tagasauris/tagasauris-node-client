@@ -164,8 +164,81 @@ Sample Response:
 ]
 ```
 
+#### Get Job Details
+Get details and progress for a specific job
 
+##### Required Parameters
+* ```job_id``` - the id of the job to return details about
 
+##### Optional Parameters
+* None
+
+```javascript
+client.getJob('JOB_ID', 
+      function(error, response, body) {
+        // do something with result
+      }
+);
+```
+
+Sample Response:
+```
+{
+    "description": "My first tagging job",
+    "billing": {
+        "price": 29,
+        "total": 290
+    },
+    "title": "First tagging",
+    "created": "2012-09-20T10:26:12",
+    "state": "started",
+    "progress": {
+        "mediaobject_all": 10,
+        "mediaobject_done": 1
+    },
+    "type": {
+        "id": "tagging",
+        "name": "Standard Tagging"
+    },
+    "id": "7fab2ee7da2d590c0a53491d8f982509"
+}
+```
+
+#### Create Job
+Create a job with one of the available workflows
+
+##### URL Parameters
+* None
+
+##### JSON Parameters
+This method accepts a properly formatted JSON object that contains the specifications for the job to be created.
+
+```
+{
+    task: {
+        workflow: "workflow_id", // string, required
+        title: "title of workflow", // string, optional
+        instruction: "Tagger Instructions" // string, required
+    },
+    mediaobjects: [ // array of objects to include in job
+        id: "media_id", // string, required
+        title: "media_title", // string, required - can be same as id
+        url: "media_public_url", // string, required - publicly accessible url of media
+        mimetype: "media_mimetype" // string, required - needs to be a proper mimetype ex. image/jpeg
+    ],
+    options: // optional - some workflows require additional information - this will be specified in the workflow
+};
+```
+
+Sample Response:
+```
+{
+    "id" : "c32503e90235ccbabae8ce6285dc3799",
+    "keys": ["49bb9cf8-03f1-11e2-a290-3cd92b6e758e",
+             "4a57dc94-03f1-11e2-882d-3cd92b6e758e"]
+}
+```
+In the response, the ```id``` is the id of the newly created job, the 2 keys can be used to track the progress of importing (first one), and the progress of the job (second one).
 
 
 ### Testing
