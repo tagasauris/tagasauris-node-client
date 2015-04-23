@@ -5,10 +5,10 @@ Node Client for the Tagasauris API
 The easiest way to download the code is to clone this repo.  Make sure a current version of node and npm are installed, and run <code>npm install</code> to install library dependencies.
 
 ### Requirements
-In order to use this client, you will need your API login and API key, which can be found by logging into your [www.photo.tagasauris.com](http://www.photo.tagasauris.com) account and clicking on the API section.
+In order to use this client, you will need your API login and API key, which can be found by logging into your [http://photo.tagasauris.com](http://photo.tagasauris.com) account and clicking on the API section.
 
 ### Endpoints
-This client wraps the API methods found in the [www.photo.tagasauris.com](http://www.photo.tagasauris.com) api documentation, and fully supports all parameters and endpoints.  An additional descriptions is available there as well.  Since your API key is private, please avoid using any of these methods on public facing web pages, run them on a secure server and proxy the results if necessary.  All enpoints require that you include the client, and all endpoints provide a callback function which will be executed after the tagasauris server has responded (asynchronously).
+This client wraps the API methods found in the [http://photo.tagasauris.com](http://photo.tagasauris.com) api documentation, and fully supports all parameters and endpoints.  An additional descriptions is available there as well.  Since your API key is private, please avoid using any of these methods on public facing web pages, run them on a secure server and proxy the results if necessary.  All enpoints require that you include the client, and all endpoints provide a callback function which will be executed after the tagasauris server has responded (asynchronously).
 
 #### Include the client:
 ```javascript
