@@ -230,6 +230,15 @@ This method accepts a properly formatted JSON object that contains the specifica
 };
 ```
 
+Call the method with this json object:
+```javascript
+client.createJob(job_json, 
+     function(error, response, body) {
+        // do something with response keys
+     }
+);
+```
+
 Sample Response:
 ```
 {
@@ -239,6 +248,85 @@ Sample Response:
 }
 ```
 In the response, the ```id``` is the id of the newly created job, the 2 keys can be used to track the progress of importing (first one), and the progress of the job (second one).
+
+#### Get Job Results
+Get the results of tagging job(s)
+
+##### Parameters
+This method supports a JSON object that supports result filtering, and is optional.
+
+```
+{
+    job_id: "Job ID", // string, optional - limit results to a specific job
+    created: "created time", // string, format YYYY-MM-DDThh:mm:ssZ - UTC based time, ISO format ex. 2012-02-25T17:53:15Z
+    correct: "type of results to get", // string, optional, options include: correct, incorrect, both, null, all
+    page: Number, // Int, optional - page number to retrieve (results can be paginated)
+    per_page: Number // Int, optional - results per page, defaults to 50
+}
+```
+
+Call this method with optional parameters:
+```javascript
+client.getResults({job_id: 'JOB_ID'},
+   function(error, response, body) {
+     body.objects.forEach(function(object, index, obj_array) {
+        console.log('ID: ' + String(object.media_object_external_id));
+        console.log(object.data);
+     });
+   }
+);
+```
+
+Sample Response:
+```
+{
+    "per_page": 50,
+    "total": 3,
+    "page": 1,
+    "objects": [
+        {
+            "media_object_external_id": "ID1234",
+            "data": [
+                {
+                    "data": {
+                        "tag": "George Washington",
+                        "id": "/en/george_washington",
+                        "synonyms": ""
+                    },
+                    "correct": "correct",
+                    "type": "Tags",
+                    "time": "2012-02-09T16:28:07Z"
+                },
+                {
+                    "data": {
+                        "tag": "Coffee",
+                        "id": "/en/coffee",
+                        "synonyms": "Expresso Tea"
+                    },
+                    "correct": "incorrect",
+                    "type": "Tags",
+                    "time": "2012-02-09T17:53:15Z"
+                }
+            ]
+        },
+        {
+            "media_object_external_id": "ID3456",
+            "data": [
+                {
+                    "data": {
+                        "tag": "Tagasauris",
+                        "id": "/m/0hn9gc4"
+                    },
+                    "type": "Tags",
+                    "correct": null,
+                    "time": "2012-02-09T16:28:07Z"
+                }
+            ]
+        }
+    ]
+}
+```
+
 
 
 ### Testing
