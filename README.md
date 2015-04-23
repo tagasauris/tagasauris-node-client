@@ -40,6 +40,32 @@ client.authorize(callback_function);
 
 The authorize endpoint accepts no parameters, and simply authorizes the account, storing the appropriate tokens.  The client handles calling this as needed for the rest of the endpoints, so there will rarely be a need to call this yourself.
 
+#### Workflow Definitions
+List workflows available for use.  The ```id``` field can be used later to create jobs of a specific type.  
+##### Paramters
+*none
+
+```javascript
+client.workflowDefinition(
+    function(error, response, body) {
+        //do something with result
+    }    
+);
+```
+
+#### List Jobs
+List jobs currently running.
+##### Paramters
+*none
+
+```javascript
+client.listJobs(
+    function(error, response, body) {
+        // do something with result
+    }    
+);
+```
+
 
 
 ### Testing
