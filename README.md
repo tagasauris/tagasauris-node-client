@@ -43,7 +43,7 @@ The authorize endpoint accepts no parameters, and simply authorizes the account,
 #### Workflow Definitions
 List workflows available for use.  The ```id``` field can be used later to create jobs of a specific type.  
 ##### Paramters
-*none
+* None
 
 ```javascript
 client.workflowDefinition(
@@ -56,7 +56,7 @@ client.workflowDefinition(
 #### List Jobs
 List jobs currently running.
 ##### Paramters
-*none
+* None
 
 ```javascript
 client.listJobs(
